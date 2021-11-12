@@ -11,6 +11,7 @@ const isLoggedIn = require('./middleware/isLoggedIn')
 // views (ejs and layouts) set up
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.use(express.static('perfectPet/public/css/style.css'))
 
 // body parser middelware
 app.use(express.urlencoded({extended:false}))
