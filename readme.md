@@ -69,19 +69,19 @@ https://www.petfinder.com/developers/v2/docs/
 
 ## MVP Goals
 
-     - Have users press a button to sign up/login and be put/aknowledged into a data base
-     - Have users search by city name show pets in that area
-     - Have users be able to press a button to favorite a pet to be added to a "favorite pets" list
-     - Have users see their "favorite pets" list and be able to remove animals and see more about an animal by clicking the name
-     - Use API call to show animal information
+- Have users press a button to sign up/login and be put/aknowledged into a data base
+- Have users search by city name show pets in that area
+- Have users be able to press a button to favorite a pet to be added to a "favorite pets" list
+- Have users see their "favorite pets" list and be able to remove animals and see more about an animal by clicking the name
+- Use API call to show animal information
 
 ## Stretch Goals
 
-     - Show ONLY animals with disabilities
-     - Have User be able to go to the adoption agency website
+- Show ONLY animals with disabilities
+- Have User be able to go to the adoption agency website
 
 ## Potential Roadblocks
 
-     - Not being able to ONLY show special needs pets since in the API it shows as a boolean
-     - Not being able to get the API to get the write information for the pet
-     - Not being able to get the CSS to look right
+- Not being able to ONLY show special needs pets since in the API it shows as a boolean
+- Not being able to get the API to get the write information for the pet
+- Not being able to get the CSS to look right
