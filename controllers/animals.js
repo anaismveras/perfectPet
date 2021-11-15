@@ -18,13 +18,13 @@ router.get('/', (req, res) => {
         const options = {
             method: 'GET',
             headers: {'Authorization': header},
-            url: "https://api.petfinder.com/v2/animals"
+            url: "https://api.petfinder.com/v2/animals?special_needs=true&limit=100"
         }
         // console.log('this is the animals called', options)---gives me an access token
     axios(options)
     .then((response) => {
         let animals = response.data.animals
-        res.render('animalsIndex', {animals: animals})
+            res.render('animalsIndex', {animals: animals})  
         })
     })
 

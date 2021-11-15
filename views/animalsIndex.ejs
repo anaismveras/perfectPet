@@ -1,4 +1,8 @@
 
-<% animals.forEach(function(animal) {%>
+<% animals.forEach(function(animal, index) {%>
+     <% if(animal.attributes.special_needs == true) { %>
         <h3> <%= animal.name %> </h3>
+     <% } else { %>
+        <% console.log(animal.name) %>
+    <% } %> 
 <% }) %> 
