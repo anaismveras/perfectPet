@@ -23,7 +23,8 @@ router.get('/', (req, res) => {
         // console.log('this is the animals called', options)---gives me an access token
     axios(options)
     .then((response) => {
-        console.log(response.data)
+        let animals = response.data.animals
+        res.render('animalsIndex', {animals: animals})
         })
     })
 
