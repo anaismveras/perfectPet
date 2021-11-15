@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
-
+app.use('/animals', require('./controllers/animals'))
 
 // home route
 app.get('/', (req, res)=>{
@@ -51,7 +51,6 @@ app.get('/', (req, res)=>{
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
-
 
 app.listen(3000, ()=>{
     console.log(`process.env.SUPER_SECRET_SECRET ${process.env.SUPER_SECRET_SECRET}`)
