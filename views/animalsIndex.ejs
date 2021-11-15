@@ -1,8 +1,17 @@
+<form action="">
+    
+</form>
 
-<% animals.forEach(function(animal, index) {%>
-     <% if(animal.attributes.special_needs == true) { %>
-        <h3> <%= animal.name %> </h3>
-     <% } else { %>
-        <% console.log(animal.name) %>
-    <% } %> 
+
+<% animals.forEach(function(animal) {%>
+    <div class="mainAnimals">
+        <% if(animal.attributes.special_needs == true) { %>
+           <h3> <%= animal.name %> </h3>
+           <h5> <%= animal.age %> </h5>
+           <h5> <%= animal.breeds.primary %> </h5> 
+           <% animal.photos.forEach(function (pic) { %>
+            <img src= '<%= pic.url %>' alt="">  
+          <% }) %> 
+        <% } %>
+    </div>
 <% }) %> 
