@@ -1,38 +1,32 @@
+require('dotenv').config()
 const { default: axios } = require('axios');
 const express = require('express');
-const router = express.Router();
-
+const layouts = require('express-ejs-layouts');
 const petFinderKey = process.env.PET_FINDER_API_KEY
 const petFinderSecret = process.env.PET_FINDER_SECRET
+const db = express.Router()
+const router = express.Router();
 
-function getData () {
-    const token = ''
-    axios.post('https://api.petfinder.com/v2/animals', {
 
-    }, {
-        headers: {
-
-        }
-    })
-    // const tokenUrl = `'grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}' https://api.petfinder.com/v2/oauth2/token`
-    // axios.get(tokenUrl.access_token)
-    // .then(apiToken => {
-    //     let petFinderUrl = `'Authorization: Bearer ${apiToken}' https://api.petfinder.com/v2/animals`
-    //     console.log(petFinderUrl)
-    // })
-    // console.log(accessToken)
-    // axios.get(petFinderUrl)
-    // .then(apiRes => {
-    //     let animals = apiRes.data.animals
-    //     res.send(`this is the type of animals, ${animals}`)
-    // })
-    // .catch(error => {
-    //     console.log(error)
-    // })
-}
 
 router.get('/', (req, res) => {
-    getData()
+    let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
+    axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
+    .then(accessToken => {
+        console.log('looking to see wtf is going on')
+        const header = "Bearer " + accessToken.data.access_token;
+        const options = {
+            method: 'GET',
+            headers: {'Authorization': header},
+            url: "https://api.petfinder.com/v2/animals"
+        }
+        // console.log('this is the animals called', options)---gives me an access token
+    axios(options)
+    .then((response) => {
+        console.log(response.data)
+        })
+    })
+
 })
 
 module.exports = router
