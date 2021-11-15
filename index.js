@@ -7,6 +7,8 @@ const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const { default: axios } = require('axios')
+const petFinderKey = process.env.PET_FINDER_API_KEY
+const petFinderSecret = process.env.PET_FINDER_SECRET
 
 
 // views (ejs and layouts) set up
@@ -45,7 +47,22 @@ app.use('/animals', require('./controllers/animals'))
 
 // home route
 app.get('/', (req, res)=>{
-    res.render('home')
+    let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
+    axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
+    .then(accessToken => {
+        console.log('looking to see wtf is going on')
+        const header = "Bearer " + accessToken.data.access_token;
+        const options = {
+            method: 'GET',
+            headers: {'Authorization': header},
+            url: "https://api.petfinder.com/v2/animals?special_needs=true&limit=100"
+        }
+    axios(options)
+    .then((response) => {
+        let animals = response.data.animals
+            res.render('home', {animals})  
+        })
+    })
 })
 
 // profile route

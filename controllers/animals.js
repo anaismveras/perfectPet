@@ -1,13 +1,9 @@
 require('dotenv').config()
 const { default: axios } = require('axios');
 const express = require('express');
-const layouts = require('express-ejs-layouts');
 const petFinderKey = process.env.PET_FINDER_API_KEY
 const petFinderSecret = process.env.PET_FINDER_SECRET
-const db = express.Router()
 const router = express.Router();
-
-
 
 router.get('/', (req, res) => {
     let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
@@ -29,5 +25,7 @@ router.get('/', (req, res) => {
     })
 
 })
+
+
 
 module.exports = router

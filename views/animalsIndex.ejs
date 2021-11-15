@@ -1,17 +1,21 @@
-<form action="">
-    
+<h2>Let's Search for your next family member</h2>
+<form action="GET" action="/animals/zipcode">
+    <label for="zipcode input">Enter Your Zip Code:</label>
+    <input type="text" name="zipCode">
+    <input type="Submit">
 </form>
-
 
 <% animals.forEach(function(animal) {%>
     <div class="mainAnimals">
         <% if(animal.attributes.special_needs == true) { %>
-           <h3> <%= animal.name %> </h3>
+           <a href="<%= animal.name %> "></a>
            <h5> <%= animal.age %> </h5>
            <h5> <%= animal.breeds.primary %> </h5> 
-           <% animal.photos.forEach(function (pic) { %>
-            <img src= '<%= pic.url %>' alt="">  
-          <% }) %> 
+          <% if(animal.photos[0]) {%>
+           <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
+          <% } else { %>
+                <p>No Image Avaliable, Check back next time</p>
+        <% } %> 
         <% } %>
     </div>
 <% }) %> 
