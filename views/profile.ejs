@@ -6,10 +6,10 @@
 <% pets.forEach(function(animal) {%>
     <div class="container">
             <h3>
-                <%= name %> 
+                <a href="/profile/<%= animal.name %> "><%= animal.name %> </a>
             </h3>
-            <h5> <%= age %> </h5>
-            <h5> <%= breed %> </h5>
     </div>
-    <button type="submit" class="btn btn-primary"> Remove from favorites</button>
+    <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-primary"> Remove from favorites</button>
+    </form>
 <% }) %>

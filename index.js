@@ -5,7 +5,8 @@ const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
-const isLoggedIn = require('./middleware/isLoggedIn')
+const methodOverride = require('method-override')
+// const isLoggedIn = require('./middleware/isLoggedIn')
 const { default: axios } = require('axios')
 const petFinderKey = process.env.PET_FINDER_API_KEY
 const petFinderSecret = process.env.PET_FINDER_SECRET
@@ -15,6 +16,7 @@ const petFinderSecret = process.env.PET_FINDER_SECRET
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.static('perfectPet/public/css/style.css'))
+app.use(methodOverride('_method'))
 
 // body parser middelware
 app.use(express.urlencoded({extended:false}))
