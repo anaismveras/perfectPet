@@ -57,12 +57,16 @@ app.get('/', (req, res)=>{
             headers: {'Authorization': header},
             url: "https://api.petfinder.com/v2/animals?special_needs=true&limit=100"
         }
+        // console.log('this is the animals called', options)---gives me an access token
     axios(options)
     .then((response) => {
         let animals = response.data.animals
-            res.render('home', {animals})  
+            res.render('home', {animals: animals})  
         })
     })
+    .catch(error => {
+        console.log(error)
+    }) 
 })
 
 // profile route

@@ -1,21 +1,28 @@
-<h2>Let's Search for your next family member</h2>
-<form action="GET" action="/animals/zipcode">
+<a href="/auth/logout">Logout</a>
+<a href="/profile">favorited pets</a>
+
+<h2>Let's Search For Your Next Family Member</h2>
+
+<form method="GET" action="/animals/zipsearch">
     <label for="zipcode input">Enter Your Zip Code:</label>
-    <input type="text" name="zipCode">
+    <input type="text" name="zipcode">
     <input type="Submit">
 </form>
 
 <% animals.forEach(function(animal) {%>
-    <div class="mainAnimals">
+    <div class="container">
         <% if(animal.attributes.special_needs == true) { %>
-           <a href="<%= animal.name %> "></a>
-           <h5> <%= animal.age %> </h5>
-           <h5> <%= animal.breeds.primary %> </h5> 
-          <% if(animal.photos[0]) {%>
-           <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
-          <% } else { %>
-                <p>No Image Avaliable, Check back next time</p>
-        <% } %> 
+            <h3>
+            <a href="/animals/<%= animal.name %>"><%= animal.name %></a>
+            </h3>
+            <h5> <%= animal.age %> </h5>
+            <h5> <%= animal.breeds.primary %> </h5> 
+            <% if(animal.photos[0]) {%>
+                <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
+            <% } else { %>
+                <p>No Image Avaliable, Check Shelter Website</p>
+            <% } %> 
         <% } %>
     </div>
-<% }) %> 
+<button type="submit" class="btn btn-primary"> Add to favorites</button>
+<% }) %>

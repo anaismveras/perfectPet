@@ -1,15 +1,18 @@
 <h2>Find a special needs pet that also needs to go home with 
     YOU!</h2>
 
-    <% if (!currentUser) { %>
-        <button><a href="/auth/signup">Signup</a></button>
-        <br />
-        <button><a href="/auth/login">Login</a></button>
-    <% } else { %>
-        <button><a href="/auth/logout">Logout</a></button>
-        <button><a href="/profile">favorited pets</a></button>
-    <% } %>
+<% if (!currentUser) { %>
+    <button><a href="/auth/signup">Signup</a></button>
+    <br />
+    <button><a href="/auth/login">Login</a></button>
+<% } else { %>
+    <button><a href="/auth/logout">Logout</a></button>
+    <button><a href="/profile">favorited pets</a></button>
+<% } %>
+<br />
 
-
-
-
+<% if(animals[0].photos[0]) {%>
+    <img src="<%= animals[0].photos[0].medium %> " alt="<%= animals.name %> ">
+<% } else { %>
+    <img src="<%= animals[2].photos[0].full %>" alt="<%= animals.name %> ">
+<% } %> 
