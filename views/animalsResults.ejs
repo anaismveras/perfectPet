@@ -3,13 +3,12 @@
 
 <h1>Let's Find Some Pets In Your Area:</h1>
 
-<% if(zipCode === undefined) { %>
+<% if(zipCode == undefined) { %>
     <h3>Zip Code Not Found</h3>
     <small>Check the zip code you entered and try again</small>
 <% } else { %>
-    <% animals.forEach(function(animal) {%>
+    <% animals.forEach(function(animal) { %>
         <div class="container">
-            <% if(animal.attributes.special_needs == true) { %>
                 <h3>
                 <a href="/animals/<%= animal.name %>"><%= animal.name %></a>
                 </h3>
@@ -20,7 +19,7 @@
                 <% } else { %>
                     <p>No Image Avaliable, Check Shelter Website</p>
                 <% } %> 
-            <% } %>
-        </div>
+        <% }) %>
+    </div>
     <button type="submit" class="btn btn-primary"> Add to favorites</button>
-<% }) %> 
+<% } %> 

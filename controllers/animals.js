@@ -42,12 +42,13 @@ router.get('/zipsearch', (req, res) => {
         const options = {
             method: 'GET',
             headers: {'Authorization': header},
-            url: `https://api.petfinder.com/v2/animals?special_needs=true&?location=${zipCode}&limit=100`
+            url: `https://api.petfinder.com/v2/animals?special_needs=true&location=${zipCode}&distance=20&limit=100`
         }
         axios(options)
         .then((response) => {
             let animals = response.data.animals
-            res.render('animalsResults', {animals: animals, zipCode})  
+            res.render('animalsResults', {animals: animals, zipCode: zipCode}) 
+            console.log(animals[0].name)
             })
         .catch(error => {
             console.log(error)
@@ -57,5 +58,6 @@ router.get('/zipsearch', (req, res) => {
         console.log(error)
     })
 })
+
 
 module.exports = router
