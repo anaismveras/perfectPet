@@ -1,1 +1,15 @@
+<a href="/auth/logout">Logout</a>
+<a href="/animals">Search More Pets</a>
+
 <h2><%= currentUser.name %>'s Favorited Pets:</h2>
+
+<% pets.forEach(function(animal) {%>
+    <div class="container">
+            <h3>
+                <%= name %> 
+            </h3>
+            <h5> <%= age %> </h5>
+            <h5> <%= breed %> </h5>
+    </div>
+    <button type="submit" class="btn btn-primary"> Remove from favorites</button>
+<% }) %>
