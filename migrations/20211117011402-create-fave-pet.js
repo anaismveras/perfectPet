@@ -20,6 +20,9 @@ module.exports = {
       breed: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       gender: {
         type: Sequelize.STRING
       },

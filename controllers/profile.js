@@ -17,7 +17,8 @@ router.get('/', isLoggedIn, (req, res)=>{
 })
 
 router.post('/addFave', isLoggedIn, (req, res) => {
-    const data = JSON.parse(JSON.stringify(req.body))
+    const data = req.body
+    console.log(req.body)
     // const reqBreeds = req.body.breeds
     // const dataOther = JSON.parse(JSON.stringify(reqBreeds))
     // console.log('this is breed', req.body.breeds.primary)
@@ -25,9 +26,10 @@ router.post('/addFave', isLoggedIn, (req, res) => {
         name: data.name,
         status: data.status,
         age: data.age,
-        // breed: dataOther.primary,
+        // breed: data.primary,
         gender: data.gender,
-        descrption: data.descrption,
+        // image: data.photos,
+        descrption: data.description,
         userId: res.locals.currentUser.id
     })
     .then(() => {

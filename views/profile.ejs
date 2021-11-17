@@ -5,9 +5,17 @@
 
 <% pets.forEach(function(animal) {%>
     <div class="container">
-            <h3>
-                <a href="/animals/<%= animal.name %> "><%= animal.name %> </a>
-            </h3>
+        <h3>
+            <a href="/animals/<%= animal.name %> "><%= animal.name %> </a>
+        </h3>
+        <h5> <%= animal.age %> </h5>
+        <!-- <h5> <%=// animal.breeds.primary %> </h5>  -->
+        <h6><%= animal.descrption%></h6>
+        <% if(animal.image) {%>
+            <img src="<%= animal.image.medium %> " alt="<%= animal.name %> ">
+            <% } else { %>
+                <p>No Image Avaliable, Check Shelter Website</p>
+        <% } %>
     </div>
     <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
         <button type="submit" class="btn btn-primary"> Remove from favorites</button>
