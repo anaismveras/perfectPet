@@ -17,19 +17,17 @@ router.get('/', isLoggedIn, (req, res)=>{
 })
 
 router.post('/addFave', isLoggedIn, (req, res) => {
-    const data = req.body
-    console.log(req.body)
     // const reqBreeds = req.body.breeds
-    // const dataOther = JSON.parse(JSON.stringify(reqBreeds))
-    // console.log('this is breed', req.body.breeds.primary)
+    const data = JSON.parse(JSON.stringify(req.body))
     db.favePet.create({
+        animalId: data.id,
         name: data.name,
         status: data.status,
         age: data.age,
-        breed: data.primary,
+        // breed: data.breeds.primary,
         gender: data.gender,
         image: data.photos,
-        descrption: data.description,
+        descrption: animalDes,
         userId: res.locals.currentUser.id
     })
     .then(() => {
@@ -51,5 +49,6 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
         console.log(error)
     })
 })
+
 
 module.exports = router

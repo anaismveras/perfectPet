@@ -1,29 +1,29 @@
 <h1>
-    <%= animal.name  %> 
+    <%= animals.name  %> 
 </h1>
 <h3>
-    Status: <%= animal.status %> 
+    Status: <%= animals.status %> 
 </h3>
-<div class="image">
-    <% if(animal.photos[0]) {%>
-        <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
-    <% } else { %>
-        <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= animal.name  %>">
-    <% } %> 
-</div>
-<div class="details">
+<!-- <div class="image">
+    <% //if(animal.photos[0]) {%>
+        <img src="<%= //animal.photos[0].medium %> " alt="<%= //animal.name %> ">
+    <% //} else { %>
+        <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= //animal.name  %>">
+    <% //} %> 
+</div> -->
+<!-- <div class="details">
     <h6>
-        Species: <%= animal.species %> 
+        Species: <%= //animals.species %> 
     </h6>
     <h6>
-        Age: <%= animal.age %> 
+        Age: <%= //age %> 
     </h6>
     <h6>
-        Breed: <%= animal.breeds.primary %> 
+        Breed: <%= //animal.breeds.primary %> 
     </h6>
     <h6>
-        Gender: <%= animal.gender %> 
-    </h6>
+        Gender: <%= //gender %> 
+    </h6> -->
     <!-- <h6>
         Spayed or Neutered: 
         <% //if (animal.spayed_neutered == true) { %>
@@ -32,8 +32,5 @@
             <h6><%= //No %></h6>
         <%// } %>
     </h6> -->
-    <h6>
-        Gender: <%= animal.gender %> 
-    </h6>
 </div>
 

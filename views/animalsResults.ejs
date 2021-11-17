@@ -10,7 +10,7 @@
     <% animals.forEach(function(animal) { %>
         <div class="container">
             <h3>
-                <a href="/animals/<%= animal.name %>"><%= animal.name %></a>
+                <a href="/animals/<%= animal.id %>"><%= animal.name %></a>
             </h3>
             <h5> <%= animal.age %> </h5>
             <h5> <%= animal.breeds.primary %> </h5> 
@@ -26,6 +26,7 @@
             <input hidden type="text" name="age" value= "<%= animal.age %>">
             <input hidden type="text" name="image" value= "<%= animal.image %>">
             <!-- <input hidden type="text" name="breed" value= "<%= //animal.breeds.primary %>"> -->
+            <input hidden type="text" name="id" value= "<%= animal.id %>">
             <input hidden type="text" name="gender" value= "<%= animal.gender %>">
             <input hidden type="text" name="descrption" value= "<%= animal.description %>">
             <button type="submit" class="btn btn-primary"> Add to favorites</button>
