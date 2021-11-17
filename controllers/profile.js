@@ -27,7 +27,7 @@ router.post('/addFave', isLoggedIn, (req, res) => {
         // breed: data.breeds.primary,
         gender: data.gender,
         image: data.photos,
-        descrption: animalDes,
+        descrption: data.description,
         userId: res.locals.currentUser.id
     })
     .then(() => {
@@ -50,5 +50,14 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
     })
 })
 
+router.get('/:animal_id', (req, res) => {
+    console.log('this is fave id', req.params.id)
+    db.favePet.findOne({
+        where: { animalId: req.params.id}
+    })
+    .then(foundFave => {
+        res.render('animalDetail', { name: foundFave.name})
+    })
+})
 
 module.exports = router
