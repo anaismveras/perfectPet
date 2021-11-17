@@ -4,11 +4,12 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 const db = require('../models')
 
 router.get('/', isLoggedIn, (req, res)=>{
-    db.favePet.findAll({
-        where: {userId: res.locals.currentUser.id}
-    })
+    db.favePet.findAll(
+        // where: {userId: res.locals.currentUser.id}
+    )
     .then(faves => {
         res.render('profile', {pets: faves})
+        // console.log('this is faves', faves)
     })
     .catch(error => {
         console.log(error)
@@ -29,14 +30,14 @@ router.post('/addFave', isLoggedIn, (req, res) => {
         descrption: data.descrption,
         userId: res.locals.currentUser.id
     })
-    .then(createdFave => {
+    .then(() => {
         // console.log('db instance created:', createdFave)
-        res.render(`profile`, createdFave)
+        res.redirect('/profile')
     })
     // res.redirect(`/profile`)
 })
 
-router.delete('/:id', (req, res)=> {
+router.delete('/:id', isLoggedIn, (req, res)=> {
     db.favePet.destroy({
         where: {id: req.params.id}
     })

@@ -6,7 +6,7 @@
 <% pets.forEach(function(animal) {%>
     <div class="container">
             <h3>
-                <a href="/profile/<%= animal.name %> "><%= animal.name %> </a>
+                <a href="/animals/<%= animal.name %> "><%= animal.name %> </a>
             </h3>
     </div>
     <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
