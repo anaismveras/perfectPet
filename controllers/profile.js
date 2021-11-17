@@ -4,9 +4,9 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 const db = require('../models')
 
 router.get('/', isLoggedIn, (req, res)=>{
-    db.favePet.findAll(
-        // where: {userId: res.locals.currentUser.id}
-    )
+    db.favePet.findAll({
+        where: {userId: res.locals.currentUser.id}
+    })
     .then(faves => {
         res.render('profile', {pets: faves})
         // console.log('this is faves', faves)
