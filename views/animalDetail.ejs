@@ -11,7 +11,7 @@
     <% } else { %>
         <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= animalName  %>">
     <% } %> 
-    </span>
+</span>
 <span class="details">
     <h6>
         Age: <%= animalAge %> 
@@ -44,17 +44,23 @@
         <% } else {%>
             <p>No Phone Number Indicated</p>
         <% } %>
+
         <% if (animalContact.email) { %>
             <p>Email: <%= animalContact.email %></p>
         <% } else {%>
             <p>No Email Address Indicated</p>
         <% } %>
-        <% if (animalContact.address1 != null) { %>
-            <p><%= animalContact.address1 %></p>
-            <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
+        <% if (animalContact.address1) { %>
+            <p>Address: <%= animalContact.address1 %>, <%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
         <% } else {%>
-            <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
+            <p>Address: <%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
         <% } %>
     </span>
 </span>
 
+<div class="comments">
+    <h2>Leave a Comment on <%= animalName %> : </h2>
+    <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <%= animalName %> , would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
+    <textarea name="comments" id="comments" cols="60" rows="5"></textarea>
+
+</div>

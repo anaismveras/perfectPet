@@ -38,7 +38,7 @@ router.get('/zipsearch', (req, res) => {
     let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
     axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
     .then(accessToken => {
-        console.log('looking to see wtf is going on')
+        // console.log('looking to see wtf is going on')
         const header = "Bearer " + accessToken.data.access_token;
         const options = {
             method: 'GET',
@@ -105,9 +105,6 @@ router.get('/:animal_id', (req, res) => {
         }
         axios(options)
         .then((response) => {
-            //for checking
-            // let animals = response.data.animal
-            // console.log('animals array', animals)
             let animalName = response.data.animal.name
             let animalStatus = response.data.animal.status
             let animalImage = response.data.animal.photos[0].large
