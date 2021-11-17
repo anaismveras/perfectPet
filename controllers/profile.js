@@ -26,9 +26,9 @@ router.post('/addFave', isLoggedIn, (req, res) => {
         name: data.name,
         status: data.status,
         age: data.age,
-        // breed: data.primary,
+        breed: data.primary,
         gender: data.gender,
-        // image: data.photos,
+        image: data.photos,
         descrption: data.description,
         userId: res.locals.currentUser.id
     })

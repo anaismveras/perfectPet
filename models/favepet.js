@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   favePet.init({
+    animalId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     status: DataTypes.STRING,
     age: DataTypes.STRING,

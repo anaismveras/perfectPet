@@ -19,11 +19,11 @@
             <h5> <%= animal.breeds.primary %> </h5> 
             <% if(animal.photos[0]) {%>
                 <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
-                <% } else { %>
-                    <p>No Image Avaliable, Check Shelter Website</p>
-                    <% } %> 
-                    <% } %>
-                </div>
+            <% } else { %>
+                <p>No Image Avaliable, Check Organization Website</p>
+            <% } %> 
+        <% } %>
+    </div>
     <form method="POST" action="/profile/addFave">
         <input hidden type="text" name="name" value= "<%= animal.name %>">
         <input hidden type="text" name="status" value= "<%= animal.status %>">
