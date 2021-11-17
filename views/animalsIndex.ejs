@@ -10,8 +10,9 @@
 </form>
 
 <% animals.forEach(function(animal) {%>
+    <% //console.log('this is anima.photos', animal.photos[0]) %> 
     <div class="container">
-        <% if(animal.attributes.special_needs == true) { %>
+        <% if(animal.attributes.special_needs == true && animal.photos[0]) { %>
             <h3>
                 <a href="/animals/<%= animal.id %>"><%= animal.name %></a>
             </h3>
@@ -28,8 +29,8 @@
         <input hidden type="text" name="name" value= "<%= animal.name %>">
         <input hidden type="text" name="status" value= "<%= animal.status %>">
         <input hidden type="text" name="age" value= "<%= animal.age %>">
-        <input hidden type="text" name="image" value= "<%= animal.image %>">
-        <!-- <input hidden type="text" name="breed" value= "<%= //animal.breeds.primary %>"> -->
+        <input hidden type="text" name="image" value= "<% animal.url %>">
+        <input hidden type="text" name="breed" value= "<%= animal.breeds.primary %>">
         <input hidden type="text" name="gender" value= "<%= animal.gender %>">
         <input hidden type="text" name="id" value= "<%= animal.id %>">
         <input hidden type="text" name="descrption" value= "<%= animal.description%>">

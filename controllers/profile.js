@@ -17,24 +17,26 @@ router.get('/', isLoggedIn, (req, res)=>{
 })
 
 router.post('/addFave', isLoggedIn, (req, res) => {
-    // const reqBreeds = req.body.breeds
     const data = JSON.parse(JSON.stringify(req.body))
+    console.log(data)
     db.favePet.create({
         animalId: data.id,
         name: data.name,
         status: data.status,
         age: data.age,
-        // breed: data.breeds.primary,
+        breed: data.breed,
         gender: data.gender,
-        image: data.photos,
-        descrption: data.description,
+        image: data.image,
+        descrption: data.descrption,
         userId: res.locals.currentUser.id
     })
-    .then(() => {
-        // console.log('db instance created:', createdFave)
+    .then((newFavePet) => {
         res.redirect('/profile')
+        console.log(newFavePet)
     })
-    // res.redirect(`/profile`)
+    .catch(error => {
+        console.log(error)
+    })
 })
 
 router.delete('/:id', isLoggedIn, (req, res)=> {
@@ -51,12 +53,8 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
 })
 
 router.get('/:animal_id', (req, res) => {
-    console.log('this is fave id', req.params.id)
     db.favePet.findOne({
-        where: { animalId: req.params.id}
-    })
-    .then(foundFave => {
-        res.render('animalDetail', { name: foundFave.name})
+        where: {animalId: req.params.animal_id}
     })
 })
 

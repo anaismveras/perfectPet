@@ -40,22 +40,20 @@
     <span>
         <h6>Contact:</h6>
         <% if (animalContact.phone) { %>
-            <p><%= animalContact.phone %></p>
+            <p>Phone Number: <%= animalContact.phone %></p>
         <% } else {%>
-                <p>No  Indicated</p>
+            <p>No Phone Number Indicated</p>
         <% } %>
         <% if (animalContact.email) { %>
-            <p><%= animalContact.email %></p>
+            <p>Email: <%= animalContact.email %></p>
         <% } else {%>
             <p>No Email Address Indicated</p>
         <% } %>
-        <% if (animalContact.address1) { %>
+        <% if (animalContact.address1 != null) { %>
             <p><%= animalContact.address1 %></p>
-           <% if (animalContact.address1) { %>
-                <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
-           <% } %>
+            <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
         <% } else {%>
-            <p>No Address Indicated</p>
+            <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
         <% } %>
     </span>
 </span>
