@@ -1,36 +1,62 @@
+
 <h1>
-    <%= name  %> 
+    <%= animalName  %> 
 </h1>
-<!-- <h3>
-    Status: <%= //animals.status %> 
-</h3> -->
-<!-- <div class="image">
-    <% //if(animal.photos[0]) {%>
-        <img src="<%= //animal.photos[0].medium %> " alt="<%= //animal.name %> ">
-    <% //} else { %>
-        <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= //animal.name  %>">
-    <% //} %> 
-</div> -->
-<!-- <div class="details">
+<h3>
+    Status: <%= animalStatus %> 
+</h3>
+<span class="image">
+    <% if(animalImage) {%>
+        <img src="<%= animalImage %> " alt="<%= animalName %> ">
+    <% } else { %>
+        <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= animalName  %>">
+    <% } %> 
+    </span>
+<span class="details">
     <h6>
-        Species: <%= //animals.species %> 
+        Age: <%= animalAge %> 
     </h6>
     <h6>
-        Age: <%= //age %> 
+        Breed: <%= animalBreed %> 
     </h6>
     <h6>
-        Breed: <%= //animal.breeds.primary %> 
+        Gender: <%= animalGender %> 
     </h6>
-    <h6>
-        Gender: <%= //gender %> 
-    </h6> -->
-    <!-- <h6>
-        Spayed or Neutered: 
-        <% //if (animal.spayed_neutered == true) { %>
-            <h6><%= //Yes %></h6>
-       <% //} else {%>
-            <h6><%= //No %></h6>
-        <%// } %>
-    </h6> -->
-</div>
+    <% if (animalBabies) { %>
+        <h6>Spayed or Neutered: Yes</h6>
+    <% } else {%>
+        <h6>Spayed or Neutered: No</h6>
+    <% } %>
+    <% if (animalHouseTrained) { %>
+        <h6>House Trained: Yes</h6>
+    <% } else {%>
+        <h6>House Trained: No</h6>
+    <% } %>
+    <% if (animalShots) { %>
+        <h6>Up To Date Shots/Vaccinations: Yes</h6>
+    <% } else {%>
+        <h6>Up To Date Shots/Vaccinations: No</h6>
+    <% } %>
+    <span>
+        <h6>Contact:</h6>
+        <% if (animalContact.phone) { %>
+            <p><%= animalContact.phone %></p>
+        <% } else {%>
+                <p>No  Indicated</p>
+        <% } %>
+        <% if (animalContact.email) { %>
+            <p><%= animalContact.email %></p>
+        <% } else {%>
+            <p>No Email Address Indicated</p>
+        <% } %>
+        <% if (animalContact.address1) { %>
+            <p><%= animalContact.address1 %></p>
+           <% if (animalContact.address1) { %>
+                <p><%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
+           <% } %>
+        <% } else {%>
+            <p>No Address Indicated</p>
+        <% } %>
+    </span>
+</span>
 

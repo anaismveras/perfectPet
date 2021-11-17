@@ -104,9 +104,22 @@ router.get('/:animal_id', (req, res) => {
         }
         axios(options)
         .then((response) => {
-            let animals = response.data.animals
-            let name = response.data.name
-            res.render('animalDetail', {animals, name})
+            //for checking
+            // let animals = response.data.animal
+            // console.log('animals array', animals)
+            let animalName = response.data.animal.name
+            let animalStatus = response.data.animal.status
+            let animalImage = response.data.animal.photos[0].large
+            let animalSpecies = response.data.animal.species
+            let animalAge = response.data.animal.age
+            let animalBreed = response.data.animal.breeds.primary
+            let animalGender = response.data.animal.gender
+            let animalBabies = response.data.animal.attributes.spayed_neutered
+            let animalContact = response.data.animal.contact
+            let animalHouseTrained = response.data.animal.attributes.house_trained
+            let animalShots = response.data.animal.attributes.shots_current
+            console.log('this is the name', animalName)
+            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots })
             })
         .catch(error => {
             console.log(error)
