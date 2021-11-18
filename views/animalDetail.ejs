@@ -68,35 +68,47 @@
                 <% } else {%>
                     <p>Address: <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
                 <% } %>
+                <h6> <p>See More About <%= animalName %> at PetFinder.com: </h6>
                 <% if (animalUrl) { %>
-                    <p>See More About <%= animalName %> at PetFinder.com: <a target="_blank" href="<%= animalUrl %>"><%= animalName %> Link </a></p> 
+                    <p><a target="_blank" href="<%= animalUrl %>"><%= animalName %> Link </a></p> 
                <% } else {%> 
                     <p>No URL Indicated</p>
               <% } %>
             </div>
-                <h6 class="animalDes">Description: <%= animalDes %> </h6>
+                <% if (animalDes) { %> 
+                    <h6> Description: </h6>
+                    <h6 class="animalDes"><%= animalDes %> </h6>
+                <% } else {%>
+                    <h6> Description: </h6>
+                    <h6 class="animalDes">No description, Press the link above to know more</h6>
+                <% } %>
         </div>
     </div>
 
-    <div class="comments">
-        <h2>Leave a Comment on <%= animalName %> : </h2>
-        <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
-        <form method="POST" action="/profile/<%= animalId %>/comments">
-        <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
-        <input type="submit" >
-        </form>
-    </div>
-    <div>
-        <ul>
+<div class="comments">
+    <h2>Leave a Comment on <%= animalName %> : </h2>
+    <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
+    <form method="POST" action="/profile/<%= animalId %>/comments">
+    <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
+    <input type="submit" >
+    </form>
+    <div class="perComment">
+        <ul class="commentList">
             <% notes.forEach((comment) => { %>
-                <li>
-                    <%= comment.description  %>
-                </li>
-                <form action="/profile/<%= comment.animalId %>/comment/<%= comment.id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-secondary btn-sm "> Remove Comment</button>
-                </form>
-           <% }) %> 
-        </ul>
+                <div class="actualComment">
+                    <li>
+                        <%= comment.description  %>
+                    </li>
+                    <form  class="buttonForm" action="/profile/<%= comment.animalId %>/comment/<%= comment.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="deleteButton btn btn-info">Remove Comment</button>
+                    </form>
+                    <form class="buttonForm" action="/profile/<%= comment.animalId %>/comment/<%= comment.id %>?_method=DELETE" method="EDIT">
+                        <button type="submit" class="deleteButton btn btn-info">Edit Comment</button>
+                    </form>
+                </div>
+                <% }) %> 
+            </ul>
+        </div>
     </div>
 </div>
 

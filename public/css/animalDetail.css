@@ -8,8 +8,6 @@
       "BigAnimalInfo BigAnimalInfo BigAnimalInfo BigAnimalInfo"
       "image image moreInfo moreInfo"
       "image image moreInfo moreInfo"
-      "image image moreInfo moreInfo"
-      "image image moreInfo moreInfo"
       "comments comments comments comments";
   }
   
@@ -21,14 +19,13 @@
   
   .comments { grid-area: comments; }
   
-  .moreInfo {
+  .theInfoOnly {
       background-color: #c4c4c4;
       border: 1px solid black;
       border-radius: 10px;
       margin-bottom: 30px;
   }
 
-  
   img {
       border: 1px solid black;
       border-radius: 10px;
@@ -38,7 +35,6 @@
     h6 {
         font-weight: bold;
         text-align: center;
-        margin-top:  25px;
     }
 
     h1, h3 {
@@ -61,8 +57,30 @@
         margin-top:  20px;
     }
 
+    .actualComment {
+        background-color: #c4c4c4;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 0.5px solid black;
+        font-size: 20px;
+    }
+
     .animalDes {
         padding: 20px 20px;
+    }
+
+    .deleteButton {
+        margin-top: 20px;
+        border: 0.5px solid black;
+    }
+
+    .buttonForm {
+        display: inline;
+    }
+
+    .commentList {
+        list-style-type: none;
     }
 
     .theInfoOnly {
