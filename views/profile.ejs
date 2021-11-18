@@ -10,18 +10,20 @@
 <div class="parent">
     <% pets.forEach(function(animal) {%>
         <div class="child">
-            <h3>
-                <a href="/profile/<%= animal.animalId %> "><%= animal.name %> </a>
-            </h3>
-            <h5> Age: <%= animal.age %> </h5>
-            <% if (animal.breed != null) {%> 
-            <h5> Breed: <%= animal.breed %> </h5> 
-            <% } else { %> 
-                <h5>Breed: Unknown Mix</h5>
-            <% } %>
-            <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-primary"> Remove from favorites</button>
-            </form>
+            <div class="petInfo">
+                <h3>
+                    <a href="/profile/<%= animal.animalId %> "><%= animal.name %> </a>
+                </h3>
+                <h5> Age: <%= animal.age %> </h5>
+                <% if (animal.breed != null) {%> 
+                <h5> Breed: <%= animal.breed %> </h5> 
+                <% } else { %> 
+                    <h5>Breed: Unknown Mix</h5>
+                <% } %>
+                <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-primary"> Remove from favorites</button>
+                </form>
+            </div>
         </div>
     <% }) %>
 </div>

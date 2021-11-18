@@ -4,22 +4,28 @@
 </nav>
 
 <div class="parent">
-    <div>
-        <h2>Sign Up</h2>
+    <div class="child">
+        <h1 class="signUp">Sign Up</h1>
         <form action="/auth/signup" method="POST">
-            <label for="new-name">Name:</label>
-            <input id="new-name" type="text" name="name">
-        
-            <label for="new-email">Email:</label>
-            <input id="new-email" type="email" name="email">
-          
-            <label for="new-password">Password:</label>
-            <input id="new-password" type="password" name="password">
-          
-            <input type="submit" value="Sign up">
+            <div class="name">
+                <label for="new-name">Name:</label>
+                <input id="new-name" type="text" name="name">
+            </div>
+            <br />
+            <div class="email">
+                <label for="new-email">Email:</label>
+                <input id="new-email" type="email" name="email">
+            </div>
+            <br />
+            <div class="password">
+                <label for="new-password">Password:</label>
+                <input id="new-password" type="password" name="password">
+            </div>
+            <br />
+            <input class="submitButton btn btn-secondary btn-lg" type="submit" value="Sign up">
         </form>
     </div>
-    <div>
+    <div class="image">
         <img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45507181/1/?bust=1565026759&width=1080" alt="Trooper">
     </div>
 </div>
