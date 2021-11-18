@@ -1,39 +1,51 @@
-<a href="/auth/logout">Logout</a>
-<a href="/profile">favorited pets</a>
+<nav class=" navBorder navbar navbar-light" style="background-color: #c4c4c4;">
+    <h3 class="navTags" >perfectPet🐶</h3>
+    <a class="navTags" href="/">home</a>
+    <a class="navTags" href="/profile">favorited pets</a>
+    <a class="navTags" href="/auth/logout">Logout</a>
+</nav>
 
-<h2>Let's Search For Your Next Family Member</h2>
+<h2 class="headingText">Let's Search For Your Next Family Member</h2>
 
-<form method="GET" action="/animals/zipsearch">
-    <label for="zipcode input">Enter Your Zip Code:</label>
-    <input type="text" id="zipcode input" name="zipcode">
-    <input type="Submit">
-</form>
-
-<% animals.forEach(function(animal) {%>
-    <% //console.log('this is anima.photos', animal.photos[0]) %> 
-    <div class="container">
-        <% if(animal.attributes.special_needs == true && animal.photos[0]) { %>
-            <h3>
-                <a href="/animals/<%= animal.id %>"><%= animal.name %></a>
-            </h3>
-            <h5> <%= animal.age %> </h5>
-            <!-- <h5> <%= //animal.breeds.primary %> </h5>  -->
-            <% if(animal.photos[0]) {%>
-                <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
-            <% } else { %>
-                <p>No Image Avaliable, Check Organization Website</p>
-            <% } %> 
-        <% } %>
-    </div>
-    <form method="POST" action="/profile/addFave">
-        <input hidden type="text" name="name" value= "<%= animal.name %>">
-        <input hidden type="text" name="status" value= "<%= animal.status %>">
-        <input hidden type="text" name="age" value= "<%= animal.age %>">
-        <input hidden type="text" name="image" value= "<% animal.url %>">
-        <input hidden type="text" name="breed" value= "<%= animal.breeds.primary %>">
-        <input hidden type="text" name="gender" value= "<%= animal.gender %>">
-        <input hidden type="text" name="id" value= "<%= animal.id %>">
-        <input hidden type="text" name="descrption" value= "<%= animal.description%>">
-        <button type="submit" class="btn btn-primary"> Add to favorites</button>
+<div class="heading">
+    <form method="GET" action="/animals/zipsearch">
+        <label for="zipcode input">Enter Your Zip Code:</label>
+        <input type="text" id="zipcodeInput" name="zipcode">
+        <input type="Submit">
     </form>
-<% }) %>
+</div>
+
+<div class="parent">
+    <% animals.forEach(function(animal) {%>
+        <% //console.log('this is anima.photos', animal.photos[0]) %> 
+        <div class="child">
+            <div class="petInfo">
+            <% if(animal.attributes.special_needs == true) { %>
+                <h3>
+                    <a class="animalName" href="/animals/<%= animal.id %>"><%= animal.name %></a>
+                </h3>
+                <h5> <%= animal.age %> </h5>
+                <h5> <%= animal.breeds.primary %> </h5> 
+                <% if(animal.photos[0]) {%>
+                    <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
+                <% } else { %>
+                        <p>No Image Avaliable, Check Organization Website</p>
+                        <% } %> 
+                <% } %>
+                <form method="POST" action="/profile/addFave">
+                    <input hidden type="text" name="name" value= "<%= animal.name %>">
+                    <input hidden type="text" name="status" value= "<%= animal.status %>">
+                    <input hidden type="text" name="age" value= "<%= animal.age %>">
+                    <input hidden type="text" name="image" value= "<% animal.url %>">
+                    <input hidden type="text" name="breed" value= "<%= animal.breeds.primary %>">
+                    <input hidden type="text" name="gender" value= "<%= animal.gender %>">
+                    <input hidden type="text" name="id" value= "<%= animal.id %>">
+                    <input hidden type="text" name="descrption" value= "<%= animal.description%>">
+                    <button type="submit" class="btn btn-primary"> Add to favorites</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<link rel="stylesheet" href="/static/css/style.css">

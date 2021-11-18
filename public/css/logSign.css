@@ -1,0 +1,14 @@
+body {
+    background-color: #ffd98f;
+}
+
+.navTags {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.navBorder {
+    border-bottom: 1px solid black;
+}

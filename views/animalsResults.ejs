@@ -1,35 +1,44 @@
-<a href="/auth/logout">Logout</a>
-<a href="/profile">favorited pets</a>
+<link rel="stylesheet" href="/static/css/style.css">
+<nav class=" navBorder navbar navbar-light" style="background-color: #c4c4c4;">
+    <h3 class="navTags" >perfectPet🐶</h3>
+    <a class="navTags" href="/">home</a>
+    <a class="navTags" href="/auth/logout">Logout</a>
+    <a class="navTags" href="/profile/<%= zipCode %> ">favorited pets</a>
+</nav>
 
-<h1>Let's Find Some Pets In Your Area:</h1>
+<h1 class="headingText">Let's Find Some Pets In Your Area:</h1>
 
+<div class="parent">
 <% if(zipCode == undefined) { %>
     <h3>Zip Code Not Found</h3>
     <small>Check the zip code you entered and try again</small>
-<% } else { %>
-    <% animals.forEach(function(animal) { %>
-        <div class="container">
-            <h3>
-                <a href="/profile/<%= animal.id %>"><%= animal.name %></a>
-            </h3>
-            <h5> <%= animal.age %> </h5>
-            <h5> <%= animal.breeds.primary %> </h5> 
-            <% if(animal.photos[0]) {%>
-                <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
-                <% } else { %>
-                    <p>No Image Avaliable, Check Organization Website</p>
-                <% } %> 
-        </div>
-        <form method="POST" action="/profile/addFave">
-            <input hidden type="text" name="name" value= "<%= animal.name %>">
-            <input hidden type="text" name="status" value= "<%= animal.status %>">
-            <input hidden type="text" name="age" value= "<%= animal.age %>">
-            <input hidden type="text" name="image" value= "<%= animal.url %>">
-            <input hidden type="text" name="breed" value= "<%= animal.breeds.primary %>">
-            <input hidden type="text" name="id" value= "<%= animal.id %>">
-            <input hidden type="text" name="gender" value= "<%= animal.gender %>">
-            <input hidden type="text" name="descrption" value= "<%= animal.description %>">
-            <button type="submit" class="btn btn-primary"> Add to favorites</button>
-        </form>
+    <% } else { %>
+        <% animals.forEach(function(animal) { %>
+            <div class="child">
+                <div class="petInfo">
+                    <h3>
+                        <a class="animalName" href="/profile/<%= animal.id %>"><%= animal.name %></a>
+                    </h3>
+                    <h5> <%= animal.age %> </h5>
+                    <h5> <%= animal.breeds.primary %> </h5> 
+                    <% if(animal.photos[0]) {%>
+                        <img src="<%= animal.photos[0].medium %> " alt="<%= animal.name %> ">
+                    <% } else { %>
+                        <p>No Image Avaliable, Check Organization Website</p>
+                    <% } %> 
+                    <form method="POST" action="/profile/addFave">
+                        <input hidden type="text" name="name" value= "<%= animal.name %>">
+                        <input hidden type="text" name="status" value= "<%= animal.status %>">
+                        <input hidden type="text" name="age" value= "<%= animal.age %>">
+                        <input hidden type="text" name="image" value= "<%= animal.url %>">
+                        <input hidden type="text" name="breed" value= "<%= animal.breeds.primary %>">
+                        <input hidden type="text" name="id" value= "<%= animal.id %>">
+                        <input hidden type="text" name="gender" value= "<%= animal.gender %>">
+                        <input hidden type="text" name="descrption" value= "<%= animal.description %>">
+                        <button type="submit" class="btn btn-primary"> Add to favorites</button>
+                        </form>
+                    </div>
+                </div>
         <% }) %>
     <% } %> 
+</div>

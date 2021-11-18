@@ -91,6 +91,16 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
     })
 })
 
+router.get('/:animal_id/comments', isLoggedIn, (req, res)=> {
+    db.note.findAll({
+        where: {userId: res.locals.currentUser.id}
+    })
+    .then(note => {
+        console.log('this is note', note)
+        res.render('animalDetail', {note: note})
+    })
+})
+
 router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
     console.log('this is req.body', req.body)
     db.note.create({

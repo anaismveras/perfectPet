@@ -1,0 +1,44 @@
+body {
+    background-color: #ffd98f;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    margin: 15px;
+    padding: 20px;
+}
+
+img {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.navBorder {
+    border-bottom: 1px solid black;
+}
+
+.navTags {
+    font-weight: bold;
+    margin: 10px;
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}

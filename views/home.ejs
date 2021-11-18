@@ -1,13 +1,25 @@
-<h2>Find a special needs pet that also needs to go home with 
-    YOU!</h2>
+<nav class="navBorder navbar navbar-light" style="background-color: #c4c4c4;">
+    <h3 class="navTags">perfectPet🐶</h3>
+</nav>
 
-<% if (!currentUser) { %>
-    <button><a href="/auth/signup">Signup</a></button>
-    <br />
-    <button><a href="/auth/login">Login</a></button>
-<% } else { %>
-    <button><a href="/auth/logout">Logout</a></button>
-    <button><a href="/animals">Search For Pets</a></button>
-<% } %>
+<div class="parent">
+    <div>
+    <h1>Find a special needs pet that also needs to find YOU!</h1>
+            <% if (!currentUser) { %>
+                <button class="btn btn-secondary btn-lg"><a href="/auth/signup">Signup</a></button>
+                <br />
+                <button class="btn btn-secondary btn-lg"><a href="/auth/login">Login</a></button>
+                <% } else { %>
+                    <button class="btn btn-secondary btn-lg"><a href="/auth/logout">Logout</a></button>
+                    <br />
+                    <button class="btn btn-secondary btn-lg"><a href="/animals">Search For Pets</a></button>
+                <% } %>
+        </div> 
+        <div class="image">
+            <img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/51365739/1/?bust=1619621287&width=560" alt="Laura (special medical needs)">
+        </div>
+</div>
 
-<h2>This is the Home Page</h2>
+
+
+<link rel="stylesheet" href="/static/css/home.css">

@@ -1,21 +1,29 @@
-<a href="/auth/logout">Logout</a>
-<a href="/animals">Search More Pets</a>
+<nav class="navBorder navbar navbar-light" style="background-color: #c4c4c4;">
+    <h3 class="navTags">perfectPet🐶</h3>
+    <a class="navTags" href="/animals">Search More Pets</a>
+    <a class="navTags" href="/">home</a>
+    <a class="navTags" href="/auth/logout">Logout</a>
+</nav>
 
-<h2><%= currentUser.name %>'s Favorited Pets:</h2>
+<h2 class="headingText"><%= currentUser.name %>'s Favorited Pets:</h2>
 
-<% pets.forEach(function(animal) {%>
-    <div class="container">
-        <h3>
-            <a href="/profile/<%= animal.animalId %> "><%= animal.name %> </a>
-        </h3>
-        <h5> Age: <%= animal.age %> </h5>
-        <% if (animal.breed != null) {%> 
-        <h5> Breed: <%= animal.breed %> </h5> 
-        <% } else { %> 
-            <h5>Breed: Unknown Mix</h5>
-        <% } %>
-    </div>
-    <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-primary"> Remove from favorites</button>
-    </form>
-<% }) %>
+<div class="parent">
+    <% pets.forEach(function(animal) {%>
+        <div class="child">
+            <h3>
+                <a href="/profile/<%= animal.animalId %> "><%= animal.name %> </a>
+            </h3>
+            <h5> Age: <%= animal.age %> </h5>
+            <% if (animal.breed != null) {%> 
+            <h5> Breed: <%= animal.breed %> </h5> 
+            <% } else { %> 
+                <h5>Breed: Unknown Mix</h5>
+            <% } %>
+            <form action="/profile/<%= animal.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-primary"> Remove from favorites</button>
+            </form>
+        </div>
+    <% }) %>
+</div>
+
+<link rel="stylesheet" href="/static/css/profile.css">

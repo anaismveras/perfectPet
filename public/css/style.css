@@ -1,0 +1,71 @@
+body {
+    background-color: #ffd98f;
+}
+
+button {
+    margin-top: 10px;
+}
+
+img {
+    margin-top: 0;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.navTags {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+.navBorder {
+    border-bottom: 1px solid black;
+}
+
+.headingText {
+    margin-top: 20px;
+}
+
+.heading {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#zipcodeInput {
+    width: 500px;
+    height: 30px
+}
+
+.animalName {
+    text-decoration: none;
+    color: black;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.child {
+    margin: auto;
+}
+
+.petInfo {
+    background-color: #c4c4c4;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 0;
+}
+
+

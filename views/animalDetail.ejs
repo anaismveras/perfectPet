@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="/static/css/profile.css">
+
+<nav class="navBorder navbar navbar-light" style="background-color: #c4c4c4;">
+    <h3 class="navTags">perfectPet🐶</h3>
+    <a href="/">home</a>
+    <a href="/profile">favorited pets</a>
+    <a href="/auth/logout">Logout</a>
+</nav>
 
 <h1>
     <%= animalName  %> 
@@ -67,3 +75,7 @@
     <input type="submit" >
     </form>
 </span>
+
+<% note.forEach(function(comments) { %>
+    <p><%= comments.descrption  %> </p>
+<% }) %> 
