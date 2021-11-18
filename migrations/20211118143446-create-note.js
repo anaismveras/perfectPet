@@ -11,6 +11,9 @@ module.exports = {
       favePetId: {
         type: Sequelize.INTEGER
       },
+      animalId: {
+        type: Sequelize.INTEGER
+      },
       userId: {
         type: Sequelize.INTEGER
       },

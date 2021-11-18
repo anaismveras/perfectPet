@@ -14,10 +14,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-button {
-    margin: 15px;
-    padding: 20px;
-}
 
 img {
     margin-top: 20px;
@@ -34,6 +30,10 @@ img {
     margin: 10px;
 }
 
+.btn {
+    padding-left: 25%;
+    padding-right: 25%;
+}
 
 .parent {
     display: grid;
@@ -41,4 +41,8 @@ img {
     grid-template-rows: 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+}
+
+button {
+    margin: 15px;
 }

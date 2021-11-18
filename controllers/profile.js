@@ -53,6 +53,21 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
 })
 
 router.get('/:animal_id', isLoggedIn, (req, res) => {
+    db.favePet.findOne({
+        where: {animalId: req.params.animal_id},
+        include: [db.user, db.note]
+    })
+    .then(favepetAnimal => {
+        if (!favepetAnimal) throw Error()
+        console.log(favePet.note)
+        res.render('/animalDetail', {favepetAnimal: favepetAnimal})
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
+router.get('/:animal_id', isLoggedIn, (req, res) => {
     let animalId = req.params.animal_id 
     
     let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
@@ -92,15 +107,19 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
     })
 })
 
-router.get('/:animal_id/comments', isLoggedIn, (req, res)=> {
-    db.note.findAll({
-        where: {userId: res.locals.currentUser.id}
-    })
-    .then(note => {
-        console.log('this is note', note)
-        res.render('animalDetail', {note: note})
-    })
-})
+// router.get('/:animal_id/comments', isLoggedIn, (req, res)=> {
+//     db.note.findAll({
+//         where: {userId: res.locals.currentUser.id}
+//     })
+//     .then(note => {
+//         console.log('this is note', note)
+//         res.render('animalDetail', {note: note})
+//     })
+// })
+
+// router.get('//:animal_id', isLoggedIn, (req, res) => {
+//     db.
+// })
 
 router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
     console.log('this is req.body', req.body)
