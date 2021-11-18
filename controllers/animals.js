@@ -116,7 +116,6 @@ router.get('/:animal_id', (req, res) => {
             let animalContact = response.data.animal.contact
             let animalHouseTrained = response.data.animal.attributes.house_trained
             let animalShots = response.data.animal.attributes.shots_current
-            console.log('this is the name', animalContact)
             res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots })
             })
         .catch(error => {

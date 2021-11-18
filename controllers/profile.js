@@ -54,7 +54,7 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
 
 router.get('/:animal_id', isLoggedIn, (req, res) => {
     let animalId = req.params.animal_id 
-
+    
     let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
     axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
     .then(accessToken => {
@@ -67,6 +67,7 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
         }
         axios(options)
         .then((response) => {
+            let animalId = response.data.animal.id
             let animalName = response.data.animal.name
             let animalStatus = response.data.animal.status
             let animalImage = response.data.animal.photos[0].large
@@ -76,10 +77,11 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
             let animalGender = response.data.animal.gender
             let animalBabies = response.data.animal.attributes.spayed_neutered
             let animalContact = response.data.animal.contact
+            let animalUrl = response.data.animal.url
             let animalHouseTrained = response.data.animal.attributes.house_trained
             let animalShots = response.data.animal.attributes.shots_current
-            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots })
-            })
+            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId })
+        })
         .catch(error => {
             console.log(error)
         })
@@ -88,5 +90,23 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
         console.log(error)
     })
 })
+
+router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
+    console.log('this is req.body', req.body)
+    db.note.create({
+        favePetId: req.params.animal_id,
+        userId: res.locals.currentUser.id,
+        description:req.body.description
+    })
+    .then(resPost => {
+        console.log('this is resPost', resPost)
+        res.redirect(`/profile/${req.params.animal_id}`)
+    })
+    .catch(error => {
+        console.log(error)
+        res.send('invalid comment', error)
+    })
+})
+
 
 module.exports = router

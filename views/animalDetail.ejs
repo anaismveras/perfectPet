@@ -50,17 +50,20 @@
         <% } else {%>
             <p>No Email Address Indicated</p>
         <% } %>
+
         <% if (animalContact.address1) { %>
-            <p>Address: <%= animalContact.address1 %>, <%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
+            <p>Address: <%= animalContact.address.address1 %>, <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
         <% } else {%>
-            <p>Address: <%= animalContact.city %>, <%= animalContact.state %>, <%= animalContact.postcode %>, <%= animalContact.country %> </p>
+            <p>Address: <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
         <% } %>
     </span>
 </span>
 
-<div class="comments">
+<span class="comments">
     <h2>Leave a Comment on <%= animalName %> : </h2>
-    <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <%= animalName %> , would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
-    <textarea name="comments" id="comments" cols="60" rows="5"></textarea>
-
-</div>
+    <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
+    <form method="POST" action="/profile/<%= animalId %>/comments">
+    <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
+    <input type="submit" >
+    </form>
+</span>
