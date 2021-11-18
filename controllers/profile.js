@@ -8,7 +8,8 @@ const petFinderSecret = process.env.PET_FINDER_SECRET
 
 router.get('/', isLoggedIn, (req, res)=>{
     db.favePet.findAll({
-        where: {userId: res.locals.currentUser.id}
+        where: {userId: res.locals.currentUser.id},
+        incude: [db.favePet]
     })
     .then(faves => {
         res.render('profile', {pets: faves})
@@ -53,87 +54,79 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
 })
 
 router.get('/:animal_id', isLoggedIn, (req, res) => {
-    db.favePet.findOne({
-        where: {animalId: req.params.animal_id},
-        include: [db.user, db.note]
-    })
-    .then(favepetAnimal => {
-        if (!favepetAnimal) throw Error()
-        console.log(favePet.note)
-        res.render('/animalDetail', {favepetAnimal: favepetAnimal})
-    })
-    .catch(error => {
-        console.log(error)
-    })
-})
-
-router.get('/:animal_id', isLoggedIn, (req, res) => {
     let animalId = req.params.animal_id 
-    
-    let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
-    axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
-    .then(accessToken => {
-        console.log('looking to see wtf is going on')
-        const header = "Bearer " + accessToken.data.access_token;
-        const options = {
-            method: 'GET',
-            headers: {'Authorization': header},
-            url: `https://api.petfinder.com/v2/animals/${animalId}?special_needs=true&limit=100`
-        }
-        axios(options)
-        .then((response) => {
-            let animalId = response.data.animal.id
-            let animalName = response.data.animal.name
-            let animalStatus = response.data.animal.status
-            let animalImage = response.data.animal.photos[0].large
-            let animalSpecies = response.data.animal.species
-            let animalAge = response.data.animal.age
-            let animalBreed = response.data.animal.breeds.primary
-            let animalGender = response.data.animal.gender
-            let animalBabies = response.data.animal.attributes.spayed_neutered
-            let animalContact = response.data.animal.contact
-            let animalUrl = response.data.animal.url
-            let animalHouseTrained = response.data.animal.attributes.house_trained
-            let animalShots = response.data.animal.attributes.shots_current
-            let animalDes = response.data.animal.description
-            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes })
+
+    db.note.findAll({
+        where: {animalId: animalId}
+    })
+    .then(foundNote => {
+        foundNote.forEach((note) => {
+            // console.log('this is the description', note.dataValues.description)
+            let comment = note.dataValues.description
+
+            let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
+            axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
+            .then(accessToken => {
+                console.log('looking to see wtf is going on')
+                const header = "Bearer " + accessToken.data.access_token;
+                const options = {
+                    method: 'GET',
+                    headers: {'Authorization': header},
+                    url: `https://api.petfinder.com/v2/animals/${animalId}?special_needs=true&limit=100`
+                }
+                axios(options)
+                .then((response) => {
+                    let animalId = response.data.animal.id
+                    let animalName = response.data.animal.name
+                    let animalStatus = response.data.animal.status
+                    let animalImage = response.data.animal.photos[0].large
+                    let animalSpecies = response.data.animal.species
+                    let animalAge = response.data.animal.age
+                    let animalBreed = response.data.animal.breeds.primary
+                    let animalGender = response.data.animal.gender
+                    let animalBabies = response.data.animal.attributes.spayed_neutered
+                    let animalContact = response.data.animal.contact
+                    let animalUrl = response.data.animal.url
+                    let animalHouseTrained = response.data.animal.attributes.house_trained
+                    let animalShots = response.data.animal.attributes.shots_current
+                    let animalDes = response.data.animal.description
+                    res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, comment})
+                })
+            })
         })
+    })
         .catch(error => {
             console.log(error)
         })
-    })
     .catch(error => {
         console.log(error)
     })
 })
 
-// router.get('/:animal_id/comments', isLoggedIn, (req, res)=> {
-//     db.note.findAll({
-//         where: {userId: res.locals.currentUser.id}
+// router.get('/:animal_id', isLoggedIn, (req, res) => {
+//     db.note.findOne({
+//         where: {animalId: req.params.animalId}
 //     })
-//     .then(note => {
-//         console.log('this is note', note)
-//         res.render('animalDetail', {note: note})
+//     .then(foundNote => {
+//         if(!foundNote) throw Error()
+//         console.log(foundNote)
+//         res.render('animalDetail', {foundNote: foundNote})
 //     })
-// })
-
-// router.get('//:animal_id', isLoggedIn, (req, res) => {
-//     db.
 // })
 
 router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
-    console.log('this is req.body', req.body)
+    // console.log('this is req.body', req.body)
     db.note.create({
-        favePetId: req.params.animal_id,
+        animalId: req.params.animal_id,
         userId: res.locals.currentUser.id,
         description:req.body.description
     })
     .then(resPost => {
-        console.log('this is resPost', resPost)
+        // console.log('this is resPost', resPost)
         res.redirect(`/profile/${req.params.animal_id}`)
     })
     .catch(error => {
-        console.log(error)
+        // console.log(error)
         res.send('invalid comment', error)
     })
 })
