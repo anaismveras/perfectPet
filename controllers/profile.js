@@ -80,7 +80,8 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
             let animalUrl = response.data.animal.url
             let animalHouseTrained = response.data.animal.attributes.house_trained
             let animalShots = response.data.animal.attributes.shots_current
-            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId })
+            let animalDes = response.data.animal.description
+            res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes })
         })
         .catch(error => {
             console.log(error)

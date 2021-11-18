@@ -2,80 +2,94 @@
 
 <nav class="navBorder navbar navbar-light" style="background-color: #c4c4c4;">
     <h3 class="navTags">perfectPet🐶</h3>
-    <a href="/">home</a>
-    <a href="/profile">favorited pets</a>
-    <a href="/auth/logout">Logout</a>
+    <a class="navTags" href="/">home</a>
+    <a class="navTags" href="/profile">favorited pets</a>
+    <a class="navTags" href="/auth/logout">Logout</a>
 </nav>
 
-<h1>
-    <%= animalName  %> 
-</h1>
-<h3>
-    Status: <%= animalStatus %> 
-</h3>
-<span class="image">
-    <% if(animalImage) {%>
-        <img src="<%= animalImage %> " alt="<%= animalName %> ">
-    <% } else { %>
-        <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= animalName  %>">
-    <% } %> 
-</span>
-<span class="details">
-    <h6>
-        Age: <%= animalAge %> 
-    </h6>
-    <h6>
-        Breed: <%= animalBreed %> 
-    </h6>
-    <h6>
-        Gender: <%= animalGender %> 
-    </h6>
-    <% if (animalBabies) { %>
-        <h6>Spayed or Neutered: Yes</h6>
-    <% } else {%>
-        <h6>Spayed or Neutered: No</h6>
-    <% } %>
-    <% if (animalHouseTrained) { %>
-        <h6>House Trained: Yes</h6>
-    <% } else {%>
-        <h6>House Trained: No</h6>
-    <% } %>
-    <% if (animalShots) { %>
-        <h6>Up To Date Shots/Vaccinations: Yes</h6>
-    <% } else {%>
-        <h6>Up To Date Shots/Vaccinations: No</h6>
-    <% } %>
-    <span>
-        <h6>Contact:</h6>
-        <% if (animalContact.phone) { %>
-            <p>Phone Number: <%= animalContact.phone %></p>
-        <% } else {%>
-            <p>No Phone Number Indicated</p>
-        <% } %>
+<div class="container">
+    <div class="BigAnimalInfo">
+        <h1>
+            <%= animalName  %> 
+        </h1>
+        <h3>
+            Status: <%= animalStatus %> 
+        </h3>
+    </div>
+    <div class="image">
+        <% if(animalImage) {%>
+            <img src="<%= animalImage %> " alt="<%= animalName %> ">
+        <% } else { %>
+            <img src="https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg" alt="<%= animalName  %>">
+        <% } %> 
+    </div>
+    <div class="moreInfo">
+        <div class="theInfoOnly">
+            <h6 class="age">
+                Age: <%= animalAge %> 
+            </h6>
+            <h6>
+                Breed: <%= animalBreed %> 
+            </h6>
+            <h6>
+                Gender: <%= animalGender %> 
+            </h6>
+            <% if (animalBabies) { %>
+                <h6>Spayed or Neutered: Yes</h6>
+            <% } else {%>
+                <h6>Spayed or Neutered: No</h6>
+            <% } %>
+            <% if (animalHouseTrained) { %>
+                <h6>House Trained: Yes</h6>
+            <% } else {%>
+                <h6>House Trained: No</h6>
+            <% } %>
+            <% if (animalShots) { %>
+                <h6>Up To Date Shots/Vaccinations: Yes</h6>
+            <% } else {%>
+                <h6>Up To Date Shots/Vaccinations: No</h6>
+            <% } %>
+            <div class="contactInfo">
+                <h6>Contact Info:</h6>
+                <% if (animalContact.phone) { %>
+                    <p>Phone Number: <%= animalContact.phone %></p>
+                <% } else {%>
+                    <p>No Phone Number Indicated</p>
+                <% } %>
 
-        <% if (animalContact.email) { %>
-            <p>Email: <%= animalContact.email %></p>
-        <% } else {%>
-            <p>No Email Address Indicated</p>
-        <% } %>
+                <% if (animalContact.email) { %>
+                    <p>Email: <%= animalContact.email %></p>
+                <% } else {%>
+                    <p>No Email Address Indicated</p>
+                <% } %>
 
-        <% if (animalContact.address1) { %>
-            <p>Address: <%= animalContact.address.address1 %>, <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
-        <% } else {%>
-            <p>Address: <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
-        <% } %>
-    </span>
-</span>
+                <% if (animalContact.address1) { %>
+                    <p>Address: <%= animalContact.address.address1 %>, <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
+                <% } else {%>
+                    <p>Address: <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
+                <% } %>
+                <% if (animalUrl) { %>
+                    <p>See More About <%= animalName %> at PetFinder.com: <a target="_blank" href="<%= animalUrl %>"><%= animalName %> Link </a></p> 
+               <% } else {%> 
+                    <p>No URL Indicated</p>
+              <% } %>
+            </div>
+                <h6 class="animalDes">Description: <%= animalDes %> </h6>
+        </div>
+    </div>
 
-<span class="comments">
-    <h2>Leave a Comment on <%= animalName %> : </h2>
-    <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
-    <form method="POST" action="/profile/<%= animalId %>/comments">
-    <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
-    <input type="submit" >
-    </form>
-</span>
+    <div class="comments">
+        <h2>Leave a Comment on <%= animalName %> : </h2>
+        <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
+        <form method="POST" action="/profile/<%= animalId %>/comments">
+        <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
+        <input type="submit" >
+        </form>
+    </div>
+</div>
 
-<% note.forEach(function(comments) { %>
-    <p><%= comments.descrption  %> </p>
-<% }) %> 
+<!-- <% //note.forEach(function(comments) { %>
+    <p><%= //comments.descrption  %> </p>
+<% //}) %>  -->
+
+<link rel="stylesheet" href="/static/css/animalDetail.css">
