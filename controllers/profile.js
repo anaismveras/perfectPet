@@ -6,6 +6,7 @@ const { default: axios } = require('axios');
 const petFinderKey = process.env.PET_FINDER_API_KEY
 const petFinderSecret = process.env.PET_FINDER_SECRET
 
+//Route to show all all favorited animals
 router.get('/', isLoggedIn, (req, res)=>{
     db.favePet.findAll({
         where: {userId: res.locals.currentUser.id},
@@ -20,6 +21,7 @@ router.get('/', isLoggedIn, (req, res)=>{
     })
 })
 
+//Route to add an animal to the db, when user presses 'add to favorites' button
 router.post('/addFave', isLoggedIn, (req, res) => {
     const data = JSON.parse(JSON.stringify(req.body))
     console.log(data)
@@ -40,6 +42,7 @@ router.post('/addFave', isLoggedIn, (req, res) => {
     })
 })
 
+//Route to Delete a note
 router.delete('/:animal_id/comment/:id', isLoggedIn, (req, res)=> {
     db.note.findOne({
         where: {id:req.params.id}
@@ -56,6 +59,7 @@ router.delete('/:animal_id/comment/:id', isLoggedIn, (req, res)=> {
     })
 })
 
+//Route to Delete a favorited animal
 router.delete('/:id', isLoggedIn, (req, res)=> {
     db.favePet.destroy({
         where: {id: req.params.id}
@@ -69,6 +73,7 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
     }) 
 })
 
+//Route for to show all notes
 router.get('/:animal_id', isLoggedIn, (req, res) => {
     let animalId = req.params.animal_id 
 
@@ -114,6 +119,54 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
     })
 })
 
+// route to once user pressed 'Edit Comment' Button
+router.get('/:animal_id/edit', (req, res) => {
+    let animalId = req.params.animal_id 
+
+    db.note.findOne({
+        where: {animalId: animalId}
+    })
+    .then((notes) => {
+        let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
+        axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
+        .then(accessToken => {
+            console.log('looking to see wtf is going on')
+            const header = "Bearer " + accessToken.data.access_token;
+            const options = {
+                method: 'GET',
+                headers: {'Authorization': header},
+                url: `https://api.petfinder.com/v2/animals/${animalId}?special_needs=true&limit=100`
+            }
+            console.log('this is notes', notes)
+            axios(options)
+            .then((response) => {
+                let animalId = response.data.animal.id
+                let animalName = response.data.animal.name
+                let animalStatus = response.data.animal.status
+                let animalImage = response.data.animal.photos[0].large
+                let animalSpecies = response.data.animal.species
+                let animalAge = response.data.animal.age
+                let animalBreed = response.data.animal.breeds.primary
+                let animalGender = response.data.animal.gender
+                let animalBabies = response.data.animal.attributes.spayed_neutered
+                let animalContact = response.data.animal.contact
+                let animalUrl = response.data.animal.url
+                let animalHouseTrained = response.data.animal.attributes.house_trained
+                let animalShots = response.data.animal.attributes.shots_current
+                let animalDes = response.data.animal.description
+                res.render('animalEditComment', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
+//Route to add comments to database, when user presses 'submit' button on comment
 router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
     // console.log('this is req.body', req.body)
     db.note.create({
@@ -130,6 +183,7 @@ router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
         res.send('invalid comment', error)
     })
 })
+
 
 
 module.exports = router

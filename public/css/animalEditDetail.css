@@ -41,6 +41,10 @@ body {
       margin-bottom: 30px;
   }
 
+  .perComment {
+      margin-top:40px;
+  }
+
   img {
       border: 1px solid black;
       border-radius: 10px;
@@ -115,4 +119,8 @@ body {
 
     .theInfoOnly {
         padding-top: 10%;
+    }
+
+    #description {
+        width: 1000px;
     }

@@ -1,12 +1,14 @@
+<!-- Nav Bar -->
 <nav class=" navBorder navbar navbar-light" style="background-color: #c4c4c4;">
     <h3 class="navTags" >perfectPet🐶</h3>
     <a class="navTags" href="/">home</a>
     <a class="navTags" href="/profile">favorited pets</a>
     <a class="navTags" href="/auth/logout">Logout</a>
 </nav>
-
+<!-- what use needs to do on the page -->
 <h2 class="headingText">Let's Search For Your Next Family Member</h2>
 
+<!-- where user need to put zipcode -->
 <div class="heading">
     <form method="GET" action="/animals/zipsearch">
         <label for="zipcode input">Enter Your Zip Code:</label>
@@ -15,6 +17,7 @@
     </form>
 </div>
 
+<!-- information of all the animals before searched by zipcode -->
 <div class="parent">
     <% animals.forEach(function(animal) {%>
         <% //console.log('this is anima.photos', animal.photos[0]) %> 
@@ -48,4 +51,5 @@
     <% }) %>
 </div>
 
+<!-- CSS Link -->
 <link rel="stylesheet" href="/static/css/style.css">

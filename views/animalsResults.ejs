@@ -1,4 +1,7 @@
+<!-- CSS Link -->
 <link rel="stylesheet" href="/static/css/style.css">
+
+<!-- Nav Bar -->
 <nav class=" navBorder navbar navbar-light" style="background-color: #c4c4c4;">
     <h3 class="navTags" >perfectPet🐶</h3>
     <a class="navTags" href="/">home</a>
@@ -6,8 +9,10 @@
     <a class="navTags" href="/profile/<%= zipCode %> ">favorited pets</a>
 </nav>
 
+<!-- What the user sees -->
 <h1 class="headingText">Let's Find Some Pets In Your Area:</h1>
 
+<!-- aniamls ifnormation based on zipcode user entered -->
 <div class="parent">
 <% if(zipCode == undefined) { %>
     <h3>Zip Code Not Found</h3>

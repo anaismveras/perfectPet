@@ -6,7 +6,7 @@
     <a class="navTags" href="/auth/logout">Logout</a>
 </nav>
 
-<!-- All of the favroited animals information -->
+<!-- All of the animals information on the 'Edit Comment' page -->
 <div class="container">
     <div class="BigAnimalInfo">
         <h1>
@@ -85,33 +85,22 @@
         </div>
     </div>
 
-    <!-- All of the comments information -->
+<!-- the comment to be edited -->
 <div class="comments">
-    <h2>Leave a Comment on <%= animalName %> : </h2>
+    <h2>Edit Your Comment on <%= animalName %> : </h2>
     <p>We at perfectPet 🐶 understand the difficulties of owning a pet, let alone one with specials needs, let us know what you think about <strong><%= animalName %></strong>, would you adopt them? why? or why not? What do you like about them? What do you not like about them? We would like to know...</p>
-    <form method="POST" action="/profile/<%= animalId %>/comments">
-    <input type="text" id="description" name="description" style="width: 500px; height: 30px;" >
-    <input type="submit" >
-    </form>
+
     <div class="perComment">
         <ul class="commentList">
-            <% notes.forEach((comment) => { %>
-                <div class="actualComment">
-                    <li>
-                        <%= comment.description  %>
-                    </li>
-                    <form  class="buttonForm" action="/profile/<%= comment.animalId %>/comment/<%= comment.id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="deleteButton btn btn-info">Remove Comment</button>
-                    </form>
-                    <a href="/profile/<%= animalId  %>/edit">
-                        <button class="deleteButton btn btn-info"> Edit Comment </button>
-                    </a>
-                </div>
-                <% }) %> 
-            </ul>
-        </div>
+                <form  class="actualComments buttonForm" action="/profile/<%= animalId %>/edit?_method=PUT" method="POST">
+                    <div class="actualComment">
+                        <input type="text" name="description" id="description" value="<%= notes.description %> ">
+                        <button type="submit" class="deleteButton editButton btn btn-info">Submit Edited Comment</button>
+                    </div>
+                </form>
+        </ul>
     </div>
 </div>
 
-<!-- CSS LInk -->
-<link rel="stylesheet" href="/static/css/animalDetail.css">
+<!-- CSS Link -->
+<link rel="stylesheet" href="/static/css/animalEditDetail.css">
