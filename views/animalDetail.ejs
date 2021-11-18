@@ -86,8 +86,17 @@
         <input type="submit" >
         </form>
     </div>
-    <div class="theComments">
-        <h6><%= comment  %> </h6>
+    <div>
+        <ul>
+            <% notes.forEach((comment) => { %>
+                <li>
+                    <%= comment.description  %>
+                </li>
+                <form action="/profile/<%= comment.animalId %>/comment/<%= comment.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-secondary btn-sm "> Remove Comment</button>
+                </form>
+           <% }) %> 
+        </ul>
     </div>
 </div>
 
