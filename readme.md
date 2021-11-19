@@ -30,12 +30,13 @@ https://www.petfinder.com/developers/v2/docs/
 
 - In the PetFinder API first a call to recieve a token is required and with that token then the API can be called to get back information requested.
 
-      - The API documentation suggested using cURL but since I used axios it did not apply to my project.
-      - To get the token I need to use my API key indicated below as petFinderKey and a Secret ID given to me by PetFinder.com indicated below as petFinderSecret and then use a specific API call url for the token.
-      -Once I have gotten the repsonse from the API for the token then I have to make another call for the information I want to get about the animals. In geting that information I need to put header information for the call which is used for authorization.
-      - In the URL shown below int he API URL is using query parameters that only gives me infotmaiton for animals with specials needs and on the page can render up to 100 animals.
-      - I put all of the header infomation with the token into a veriable named options and then I am using axios again to finally call the API for the information
-      - That infomation is being rendered on the animalIndex page where after the user signed in they see all of the animals with the query parameters before entering a zipcode
+- The API documentation suggested using cURL but since I used axios it did not apply to my project.
+- To get the token I need to use my API key indicated below as petFinderKey and a Secret ID given to me by PetFinder.com indicated below as petFinderSecret and then use a specific API call url for the token.
+-Once I have gotten the repsonse from the API for the token then I have to make another call for the information I want to get about the animals. In geting that information I need to put header information for the call which is used for authorization.
+- In the URL shown below int he API URL is using query parameters that only gives me infotmaiton for animals with specials needs and on the page can render up to 100 animals.
+- I put all of the header infomation with the token into a veriable named options and then I am using axios again to finally call the API for the information
+- That infomation is being rendered on the animalIndex page where after the user signed in they see all of the animals with the query parameters before entering a zipcode
+
      ``` js
           let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
           axios.post(`https://api.petfinder.com/v2/oauth2/token`, gettingToken)
@@ -57,7 +58,8 @@ https://www.petfinder.com/developers/v2/docs/
                console.log(error)
           })
      ```
-     - The other API calls looked similar to the over above except for the query paramters in the API url based on zip code the user entered and specific animal ID that the user clicked.
+
+- The other API calls looked similar to the over above except for the query paramters in the API url based on zip code the user entered and specific animal ID that the user clicked.
 
 ## How To Use
 
