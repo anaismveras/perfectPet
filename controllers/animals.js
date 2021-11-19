@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 //Route show all animals when user puts in their zipcdoe
 router.get('/zipsearch', (req, res) => {
     let zipCode = req.query.zipcode
-    console.log('heres the zip', zipCode)
+    // console.log('heres the zip', zipCode)
     // console.log('this is req.query', req.query)
 
     let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`

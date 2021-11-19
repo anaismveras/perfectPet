@@ -6,8 +6,9 @@ const { default: axios } = require('axios');
 const petFinderKey = process.env.PET_FINDER_API_KEY
 const petFinderSecret = process.env.PET_FINDER_SECRET
 
-//Route to show all all favorited animals
+// Route to show all all favorited animals
 router.get('/', isLoggedIn, (req, res)=>{
+    console.log('this is req.query', req.query)
     db.favePet.findAll({
         where: {userId: res.locals.currentUser.id},
         incude: [db.favePet]
@@ -107,7 +108,7 @@ router.get('/:animalId', isLoggedIn, (req, res) => {
             const options = {
                 method: 'GET',
                 headers: {'Authorization': header},
-                url: `https://api.petfinder.com/v2/animals/${animalId}?special_needs=true&limit=100`
+                url: `https://api.petfinder.com/v2/animals/${animalId}&special_needs=true&limit=100`
             }
             axios(options)
             .then((response) => {
@@ -125,7 +126,7 @@ router.get('/:animalId', isLoggedIn, (req, res) => {
                 let animalHouseTrained = response.data.animal.attributes.house_trained
                 let animalShots = response.data.animal.attributes.shots_current
                 let animalDes = response.data.animal.description
-                res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes })
+                res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes, zipCode: zipCode })
             })
             .catch(error => {
                 console.log(error)
