@@ -68,9 +68,8 @@
                 <% } else {%>
                     <p>Address: <%= animalContact.address.city %>, <%= animalContact.address.state %>, <%= animalContact.address.postcode %>, <%= animalContact.address.country %> </p>
                 <% } %>
-                <h6> <p>See More About <%= animalName %> at PetFinder.com: </h6>
                 <% if (animalUrl) { %>
-                    <p><a target="_blank" href="<%= animalUrl %>"><%= animalName %> Link </a></p> 
+                    <h6> See More About <a target="_blank" href="<%= animalUrl %>"><%= animalName %> </a> at PetFinder.com </h6> 
                <% } else {%> 
                     <p>No URL Indicated</p>
               <% } %>
