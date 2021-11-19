@@ -43,7 +43,7 @@ router.post('/addFave', isLoggedIn, (req, res) => {
 })
 
 //Route to Delete a note
-router.delete('/:animal_id/comment/:id', isLoggedIn, (req, res)=> {
+router.delete('/:animalId/comment/:id', isLoggedIn, (req, res)=> {
     db.note.findOne({
         where: {id:req.params.id}
     })
@@ -51,7 +51,7 @@ router.delete('/:animal_id/comment/:id', isLoggedIn, (req, res)=> {
         foundNote.destroy()
         .then(deletedItem => {
             // console.log('this is animalID', req.query.id)
-            res.redirect(`/profile/${req.params.animal_id}`)
+            res.redirect(`/profile/${req.params.animalId}`)
         })
         .catch(error => {
             console.log(error)
@@ -73,9 +73,26 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
     }) 
 })
 
+// route for when the comment is edited after user presses sumbit edit button
+router.put('/:animalId', (res, req) => {
+    console.log('this is req.params', req.params)
+    db.note.findOne({
+        where: {animalId: req.params.animalId},
+        where: {userId: res.locals.currentUser.id}
+    })
+    .then(foundNote => {
+        foundNote.note.update({
+            description: req.body.description
+        })
+    .then(updatedNote => {
+           res.render('animalDetail', {updatedNote})
+        })
+    })
+})
+
 //Route for to show all notes
-router.get('/:animal_id', isLoggedIn, (req, res) => {
-    let animalId = req.params.animal_id 
+router.get('/:animalId', isLoggedIn, (req, res) => {
+    let animalId = req.params.animalId 
 
     db.note.findAll({
         where: {animalId: animalId}
@@ -120,8 +137,8 @@ router.get('/:animal_id', isLoggedIn, (req, res) => {
 })
 
 // route to once user pressed 'Edit Comment' Button
-router.get('/:animal_id/edit', (req, res) => {
-    let animalId = req.params.animal_id 
+router.get('/:animalId/edit', (req, res) => {
+    let animalId = req.params.animalId 
 
     db.note.findOne({
         where: {animalId: animalId}
@@ -154,7 +171,7 @@ router.get('/:animal_id/edit', (req, res) => {
                 let animalHouseTrained = response.data.animal.attributes.house_trained
                 let animalShots = response.data.animal.attributes.shots_current
                 let animalDes = response.data.animal.description
-                res.render('animalEditComment', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes })
+                res.render('animalEditComment', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId: animalId, animalDes, notes })
             })
             .catch(error => {
                 console.log(error)
@@ -167,16 +184,16 @@ router.get('/:animal_id/edit', (req, res) => {
 })
 
 //Route to add comments to database, when user presses 'submit' button on comment
-router.post('/:animal_id/comments', isLoggedIn, (req, res) => {
+router.post('/:animalId/comments', isLoggedIn, (req, res) => {
     // console.log('this is req.body', req.body)
     db.note.create({
-        animalId: req.params.animal_id,
+        animalId: req.params.animalId,
         userId: res.locals.currentUser.id,
         description:req.body.description
     })
     .then(resPost => {
         // console.log('this is resPost', resPost)
-        res.redirect(`/profile/${req.params.animal_id}`)
+        res.redirect(`/profile/${req.params.animalId}`)
     })
     .catch(error => {
         // console.log(error)

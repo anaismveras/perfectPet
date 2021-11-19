@@ -92,8 +92,9 @@
 
     <div class="perComment">
         <ul class="commentList">
-                <form  class="actualComments buttonForm" action="/profile/<%= animalId %>/edit?_method=PUT" method="POST">
+                <form  class="actualComments buttonForm" action="/profile/<%= animalId %>/?_method=PUT" method="POST">
                     <div class="actualComment">
+                        <input hidden type="text" name="animalId" id="animalId " value="<% animalId %>">
                         <input type="text" name="description" id="description" value="<%= notes.description %> ">
                         <button type="submit" class="deleteButton editButton btn btn-info">Submit Edited Comment</button>
                     </div>
