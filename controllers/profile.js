@@ -74,18 +74,19 @@ router.delete('/:id', isLoggedIn, (req, res)=> {
 })
 
 // route for when the comment is edited after user presses sumbit edit button
-router.put('/:animalId', (res, req) => {
-    console.log('this is req.params', req.params)
+router.put('/:animalId', (req, res) => {
     db.note.findOne({
-        where: {animalId: req.params.animalId},
-        where: {userId: res.locals.currentUser.id}
+        where: {animalId: req.params.animalId, userId: res.locals.currentUser.id}
     })
     .then(foundNote => {
-        foundNote.note.update({
+        console.log('this is foundNote', foundNote)
+        foundNote.update({
             description: req.body.description
+
         })
     .then(updatedNote => {
-           res.render('animalDetail', {updatedNote})
+        // console.log('this is updated note', updatedNote)
+           res.redirect(`/profile/${updatedNote.animalId}`)
         })
     })
 })
