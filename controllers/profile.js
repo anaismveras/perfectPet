@@ -126,7 +126,7 @@ router.get('/:animalId', isLoggedIn, (req, res) => {
                 let animalHouseTrained = response.data.animal.attributes.house_trained
                 let animalShots = response.data.animal.attributes.shots_current
                 let animalDes = response.data.animal.description
-                res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes, zipCode: zipCode })
+                res.render('animalDetail', {animalName: animalName, animalStatus: animalStatus, animalSpecies: animalSpecies, animalAge: animalAge, animalBreed, animalGender, animalImage, animalBabies, animalContact, animalHouseTrained, animalShots, animalUrl, animalId, animalDes, notes})
             })
             .catch(error => {
                 console.log(error)
@@ -202,7 +202,6 @@ router.post('/:animalId/comments', isLoggedIn, (req, res) => {
         res.send('invalid comment', error)
     })
 })
-
 
 
 module.exports = router

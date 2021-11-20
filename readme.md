@@ -24,7 +24,7 @@ https://www.petfinder.com/developers/v2/docs/
 
 ## ERD
 
-![25EF90CB-F4CB-4689-8F62-D4AA36D509F6](https://user-images.githubusercontent.com/78924263/141535428-b38c2de3-d966-4947-acab-720320a89dea.jpeg)
+![16C3D974-239F-4425-81CA-A83825930BA0](https://user-images.githubusercontent.com/78924263/142742374-5d60a3f8-c452-4b98-9f73-935ddcfe758c.jpeg)
 
 ## API Call
 
