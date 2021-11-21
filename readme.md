@@ -28,12 +28,12 @@ https://www.petfinder.com/developers/v2/docs/
 
 ## API Call
 
-- In the PetFinder API first a call to recieve a token is required and with that token then the API can be called to get back information requested.
-- To get the token I need to use my API key indicated below as petFinderKey and a Secret ID given to me by PetFinder.com indicated below as petFinderSecret and then use a specific API call url for the token.
+- To get information from the PetFinder API first a call to recieve a token is required and with that token then the API can be called to get back information requested.
+- To get the token I need to use my API key indicated below as petFinderKey and a Secret ID given to me by PetFinder.com indicated below as petFinderSecret and then use a specific API call url just to get the token.
 - Once I have gotten the repsonse from the API for the token then I have to make another call for the information I want to get about the animals. In geting that information I need to put header information for the call which is used for authorization.
-- In the URL shown below int he API URL is using query parameters that only gives me infotmaiton for animals with specials needs and on the page can render up to 100 animals.
-- I put all of the header infomation with the token into a veriable named options and then I am using axios again to finally call the API for the information
-- That infomation is being rendered on the animalIndex page where after the user signed in they see all of the animals with the query parameters before entering a zipcode
+- The url shown below is the API URL for the actual animal information, using query parameters, that only give me infotmaiton for animals with specials needs == true and on the page can render up to 100 animals(maxium number based on the documentation).
+- I put all of the header infomation with the token into a variable named options and then I am using axios again to finally call the API for the information.
+- That infomation for the call indicated below is being rendered on the animalIndex page where after the user signs in/logs in they see all of the animals with the query parameters before needing to enter a zipcode.
 
      ``` js
           let gettingToken = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSecret}`
@@ -57,20 +57,21 @@ https://www.petfinder.com/developers/v2/docs/
           })
      ```
 
-- The other API calls looked similar to the over above except for the query paramters in the API url based on zip code the user entered and specific animal ID that the user clicked.
+- The other API calls looked similar to the code above except for the query paramters in those API urls are based on the zip code the user entered and specific animal ID when the user clicks on the name of animal.
 
 ## How To Use
 
-- NavBar:On everypage there is a navbar that the user would be able to press the links throughout the site to go back to another back or even log out.
+- NavBar: On everypage there is a navbar that the user would be able to press the links throughout the app to go back and forth throughout the pages and even log out.
 
-- Home Page: A short description on what the website is about with a login and sign up button. To use the website you must log in or sign up.
-- Login/Sign Up Page: Showing a form with name, email and password so that the user can get into using the website.
+- Home Page: A short description on what the website is about with a login and sign up button. To use the website user must log in or sign up.
 
-- AnimalIndex Page: showing a form that the user can put in the zipcode and a grid of animals from the API call without any specifications except for special needs and 100 animals per page. Each animal has an 'Add to favorites' button that regardless of the animal being in the users zipcode or not they can favorite it to see more information about the animal.
+- Login/Sign Up Page: Showing a form with email, password and/or name so that the user can get into using the website.
 
-- AnimalResults Page: Showing a grid of animals from the API call with the specifications special needs, 100 animals per page and by the zipcode the user entered.
+- AnimalIndex Page: Showing a form that the user can put in the zipcode and a grid of animals from the API call without any specifications except for special needs and 100 animals per page. Each animal has an 'Add to favorites' button that regardless of the animal not being in the users zipcode, they can favorite the animal to see more information about them.
 
-- Favorited Pet/Profile Page: Once the user presses the 'add to favorites' button that animal will appear on the 'favorited pet'/profile page. On this page there is a grid of animals infomation where the user can click on the animals name to show more information on the animal. Where they will go to another page, below each animals information there is a delete button that if the user perfers not to adopt or research more about the animal they will be removed from the 'favorited pet'/profile page.
+- AnimalResults Page: Showing a grid of animals from the API call with the specifications special needs, 100 animals per page and by the zipcode the user entered. Similiar to the animalIndex page.
+
+- Favorited Pet/Profile Page: Once the user presses the 'add to favorites' button that animal's name, age and breed will appear on the 'favorited pet'/profile page. On this page there is a grid of animals infomation where the user can click on the animals name to show more information on them. The user will be taken to another page, below each animals information there is a delete button that if the user perfers not to adopt or research more about the animal, they will be removed from the 'favorited pet'/profile page.
 
 - AnimalDetail Page: Shows the information(breeed, species, gender, etc.) of the animal that the user added to the 'favorited pets' page, when the user clicks the animals name. The user can also make comments to themselves about this animal for example, 'If I adopt them, they need to be neutered'. The comments can also be deleted or edited by the user.
 
