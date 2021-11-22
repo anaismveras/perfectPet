@@ -26,6 +26,7 @@ https://www.petfinder.com/developers/v2/docs/
 
 ![16C3D974-239F-4425-81CA-A83825930BA0](https://user-images.githubusercontent.com/78924263/142742374-5d60a3f8-c452-4b98-9f73-935ddcfe758c.jpeg)
 
+
 ## API Call
 
 - To get information from the PetFinder API first a call to recieve a token is required and with that token then the API can be called to get back information requested.
@@ -58,6 +59,10 @@ https://www.petfinder.com/developers/v2/docs/
      ```
 
 - The other API calls looked similar to the code above except for the query paramters in those API urls are based on the zip code the user entered and specific animal ID when the user clicks on the name of animal.
+
+## Route Tables
+
+![C9C79D61-A6CC-4791-A746-6BCD8EF41CE5](https://user-images.githubusercontent.com/78924263/142883629-5d26b3bc-3616-4ab2-94a5-f28e09b5d80e.jpeg)
 
 ## How To Use
 
