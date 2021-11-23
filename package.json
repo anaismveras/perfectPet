@@ -26,6 +26,7 @@
     "pet-finder-api": "^1.0.1",
     "petfinder": "^0.1.1",
     "pg": "^8.4.2",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.3.0"
   }
 }
